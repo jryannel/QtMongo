@@ -51,10 +51,11 @@ public slots:
 
 protected:
     QDeclarativeEngine* engine() { return m_engine; }
+    QDeclarativeEngine *m_engine;
+	
+	mongo::DBClientConnection *m_c;
     mongo::DBClientConnection* conn() { return m_c; }
 
-    QDeclarativeEngine *m_engine;
-    mongo::DBClientConnection *m_c;
 };
 
 

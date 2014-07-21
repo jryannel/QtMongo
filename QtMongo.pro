@@ -7,20 +7,23 @@ TARGET = qtmongodb
 DESTDIR = lib
 OBJECTS_DIR = tmp
 MOC_DIR = tmp
+INCLUDEPATH += include
+
+QMAKE_MOC = $$[QT_INSTALL_BINS]/moc -DBOOST_TT_HAS_OPERATOR_HPP_INCLUDED  -DBOOST_NO_TEMPLATE_PARTIAL_SPECIALIZATION
 
 HEADERS += \
-    QtMongoPlugin.h \
-    BSON.h \
-    QMongoDriver.h \
-    QMongoCursor.h \
-    QMongoType.h
+    include/QtMongoPlugin.h \
+    include/BSON.h \
+    include/QMongoDriver.h \
+    include/QMongoCursor.h \
+    include/QMongoType.h
 
 SOURCES += \
-    QtMongoPlugin.cpp \
-    BSON.cpp \
-    QMongoDriver.cpp \
-    QMongoCursor.cpp \
-    QMongoType.cpp
+    srcs/QtMongoPlugin.cpp \
+    srcs/BSON.cpp \
+    srcs/QMongoDriver.cpp \
+    srcs/QMongoCursor.cpp \
+    srcs/QMongoType.cpp
 
 OTHER_FILES += \
     demo.qml \
@@ -50,7 +53,4 @@ OTHER_FILES += \
     QtMongo/lib/jstests/find1.js \
     QtMongo/MongoDriverWrapper.js
 
-LIBS += -lmongoclient \
-    -lboost_thread-mt -lboost_filesystem -lboost_program_options
-
-unix:!macx:!symbian: PRE_TARGETDEPS += /usr/lib/libmongoclient.a
+LIBS += -lmongoclient  -lboost_thread -lboost_filesystem -lboost_program_options

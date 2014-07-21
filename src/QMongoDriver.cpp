@@ -37,7 +37,7 @@ QMongoCursor* QMongoDriver::find(QString ns, QVariantMap query, QVariantMap fiel
 
 void QMongoDriver::insert(QString ns, QVariantMap object) {
     mongo::BSONObj obj(toBson(object));
-    qDebug() << "QMongoDriver::insert" << ns << QString::fromStdString(obj);
+    //qDebug() << "QMongoDriver::insert" << ns << QString::fromStdString(obj);
     conn()->insert(ns.toStdString(), obj);
 }
 
