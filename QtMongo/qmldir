@@ -1,0 +1,5 @@
+plugin qtmongoplugin
+Json 1.0 lib/json/json2.js
+MongoDB 1.0 MongoDB.qml
+MongoQuery 1.0 MongoQuery.qml
+MongoCollection 1.0 MongoCollection.qml

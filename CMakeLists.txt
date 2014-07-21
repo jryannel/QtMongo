@@ -52,8 +52,34 @@ set( SRCS
 add_library( libqtmongoplugin SHARED
 	 ${SRCS}
 	 ${MOC_SRCS}
-)
+	)
 
 set( LIBRARY_OUTPUT_PATH ${qtmongo_SOURCE_DIR}/QtMongo/ )
 set_target_properties( libqtmongoplugin PROPERTIES PREFIX "")
 
+install( TARGETS libqtmongoplugin LIBRARY DESTINATION ${QT_IMPORTS_DIR}/QtMongo )
+install( FILES
+	QtMongo/lib/mongodb/collection_patch.js
+	QtMongo/lib/mongodb/db_patch.js
+	QtMongo/lib/mongodb/utils.js
+	QtMongo/lib/mongodb/db.js
+	QtMongo/lib/mongodb/collection.js
+	QtMongo/lib/mongodb/query.js
+	QtMongo/lib/mongodb/README
+	QtMongo/lib/mongodb/utils_patch.js
+	QtMongo/lib/mongodb/query_patch.js
+	DESTINATION ${QT_IMPORTS_DIR}/QtMongo/lib/mongodb/
+	)
+install( FILES
+	QtMongo/MongoQuery.qml
+	QtMongo/MongoDriverWrapper.js
+	QtMongo/MongoCollection.qml
+	QtMongo/MongoDB.js
+	QtMongo/mongo.js
+	QtMongo/qmldir
+	QtMongo/MongoCollection.js
+	QtMongo/MongoDB.qml
+	QtMongo/MongoCode.js
+	QtMongo/plugins.qmltypes
+	DESTINATION ${QT_IMPORTS_DIR}/QtMongo
+	)

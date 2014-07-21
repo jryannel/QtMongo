@@ -1,5 +1,4 @@
-import Qt 4.7
-import "lib/json/json2.js" as Json
+import QtQuick 1.1
 
 ListModel {
     id: mongoQuery
@@ -21,7 +20,6 @@ ListModel {
         clear()
 
         var cursor = collection.find(query)
-        console.log( Json.JSON.stringify(query) )
 
         if ($returnKey)
             cursor = cursor._addSpecial("$returnKey", $returnKey)

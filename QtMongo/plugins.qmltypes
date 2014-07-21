@@ -1,0 +1,95 @@
+import QtQuick.tooling 1.1
+
+// This file describes the plugin-supplied types contained in the library.
+// It is used for QML tooling purposes only.
+
+Module {
+    Component {
+        name: "QMongoCursor"
+        prototype: "QObject"
+        exports: [
+            "QtMongo/MongoCursor 1.0"
+        ]
+        exportMetaObjectRevisions: [
+            0
+        ]
+        Method { name: "hasNext"; type: "bool" }
+        Method { name: "next"; type: "QVariantMap" }
+        Method { name: "toList"; type: "QVariantList" }
+    }
+    Component {
+        name: "QMongoDriver"
+        prototype: "QObject"
+        exports: [
+            "QtMongo/MongoDriver 1.0"
+        ]
+        exportMetaObjectRevisions: [
+            0
+        ]
+        Method {
+            name: "init"
+            type: "QMongoDriver*"
+            Parameter { name: "host"; type: "string" }
+        }
+        Method {
+            name: "find"
+            type: "QMongoCursor*"
+            Parameter { name: "ns"; type: "string" }
+            Parameter { name: "query"; type: "QVariantMap" }
+            Parameter { name: "fields"; type: "QVariantMap" }
+            Parameter { name: "limit"; type: "int" }
+            Parameter { name: "skip"; type: "int" }
+            Parameter { name: "batchSize"; type: "int" }
+            Parameter { name: "options"; type: "int" }
+        }
+        Method {
+            name: "insert"
+            Parameter { name: "ns"; type: "string" }
+            Parameter { name: "object"; type: "QVariantMap" }
+        }
+        Method {
+            name: "remove"
+            Parameter { name: "ns"; type: "string" }
+            Parameter { name: "object"; type: "QVariantMap" }
+            Parameter { name: "justOne"; type: "bool" }
+        }
+        Method {
+            name: "update"
+            Parameter { name: "ns"; type: "string" }
+            Parameter { name: "query"; type: "QVariantMap" }
+            Parameter { name: "object"; type: "QVariantMap" }
+            Parameter { name: "upsert"; type: "bool" }
+            Parameter { name: "multi"; type: "bool" }
+        }
+        Method {
+            name: "mapReduce"
+            type: "QVariantMap"
+            Parameter { name: "ns"; type: "string" }
+            Parameter { name: "map"; type: "string" }
+            Parameter { name: "reduce"; type: "string" }
+            Parameter { name: "query"; type: "QVariantMap" }
+            Parameter { name: "output"; type: "string" }
+        }
+        Method {
+            name: "createObjectId"
+            type: "QMongoType*"
+            Parameter { name: "objId"; type: "QVariantMap" }
+        }
+        Method {
+            name: "createFunction"
+            type: "QMongoType*"
+            Parameter { name: "code"; type: "string" }
+            Parameter { name: "scope"; type: "QVariantMap" }
+        }
+    }
+    Component {
+        name: "QMongoType"
+        prototype: "QObject"
+        exports: [
+            "QtMongo/MongoType 1.0"
+        ]
+        exportMetaObjectRevisions: [
+            0
+        ]
+    }
+}

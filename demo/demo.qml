@@ -1,7 +1,5 @@
-// TAKE CARE OF PATH IN qmldir FILE!
-import Qt 4.7
-import "QtMongo"
-import "QtMongo/lib/json/json2.js" as Json
+import QtQuick 1.1
+import QtMongo 1.0
 
 Row {
     Column {
