@@ -4,18 +4,25 @@ project(qtmongo)
 # Qt related new cmake functions
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
-set(CMAKE_SHARED_LINKER_FLAGS "-Wl,--no-undefined")
+set(CMAKE_SHARED_LINKER_FLAGS "-Wl,--no-undefined,-lboost_system")
 set(CMAKE_MODULE_PATH ${qtmongo_SOURCE_DIR}/CMakeModules)
 
-find_package(Qt4 COMPONENTS QtCore QtDeclarative QtScript REQUIRED)
-find_package(Boost 1.54 COMPONENTS thread filesystem program_options REQUIRED)
+find_package(Qt5Widgets REQUIRED)
+find_package(Qt5Script)
+find_package(Boost 1.54 COMPONENTS thread filesystem program_options system REQUIRED)
 find_package(MongoDB REQUIRED)
+
+include_directories( ${Boost_INCLUDE_DIRS} )
+find_package( Threads )
 
 add_definitions( -DQT_DEVELOPER_BUILD=1 -DNOCRYPT=1 -DNOUNCRYPT=1 )
 
 include_directories(
 	${CMAKE_CURRENT_SOURCE_DIR}
-	${QT_INCLUDES}
+	${Qt5Widgets_INCLUDE_DIRS}
+        ${Qt5Widgets_LIBRARIES}
+        ${Qt5Declarative_INCLUDE_DIRS}
+	${Qt5Declarative_LIBRARIES}
 	${Boost_INCLUDE_DIR}
 	include
 )
@@ -23,7 +30,8 @@ include_directories(
 link_libraries(
     ${QT_QTSCRIPT_LIBRARY}
 	${QT_QTCORE_LIBRARY}
-	${QT_QTDECLARATIVE_LIBRARY}
+	${Qt5Declarative_LIBRARIES}
+	${Qt5Widgets_LIBRARIES}
 	${Boost_LIBRARIES}
 	${MongoDB_LIBRARIES}
 )
@@ -36,7 +44,7 @@ set( HDRS
 	include/QMongoType.h
 	)
 
-QT4_WRAP_CPP( MOC_SRCS
+QT5_WRAP_CPP( MOC_SRCS
 	${HDRS}
 	OPTIONS -DBOOST_TT_HAS_OPERATOR_HPP_INCLUDED  -DBOOST_NO_TEMPLATE_PARTIAL_SPECIALIZATION
 	)
@@ -56,7 +64,8 @@ add_library( libqtmongoplugin SHARED
 
 set( LIBRARY_OUTPUT_PATH ${qtmongo_SOURCE_DIR}/QtMongo/ )
 set_target_properties( libqtmongoplugin PROPERTIES PREFIX "")
-
+target_link_libraries( libqtmongoplugin ${Boost_LIBRARIES} ${OPENSSL_LIBRARIES} ${rt_library} ${pthread_library} ${CMAKE_DL_LIBS})
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${Qt5Widgets_EXECUTABLE_COMPILE_FLAGS}")
 install( TARGETS libqtmongoplugin LIBRARY DESTINATION ${QT_IMPORTS_DIR}/QtMongo )
 install( FILES
 	QtMongo/lib/mongodb/collection_patch.js

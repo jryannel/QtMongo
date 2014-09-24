@@ -1,15 +1,15 @@
 #ifndef QTMONGOPLUGIN_H
 #define QTMONGOPLUGIN_H
 
-#include <QDeclarativeExtensionPlugin>
-#include <QDeclarativeEngine>
-#include <QDeclarativeContext>
+#include <QtQml/QQmlExtensionPlugin>
+#include <QtQml/QQmlEngine>
+#include <QtQml/QQmlContext>
 
-class QtMongoPlugin : public QDeclarativeExtensionPlugin
+class QtMongoPlugin : public QQmlExtensionPlugin
 {
     Q_OBJECT
 public:
-    virtual void initializeEngine(QDeclarativeEngine *engine, const char *uri);
+    virtual void initializeEngine(QQmlEngine *engine, const char *uri);
     virtual void registerTypes(const char *uri);
 };
 

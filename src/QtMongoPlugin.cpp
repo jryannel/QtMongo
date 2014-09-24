@@ -1,7 +1,8 @@
 #include <QDebug>
 #include "QtMongoPlugin.h"
 #include "QMongoDriver.h"
-#include <qdeclarative.h>
+#include <QtDeclarative/QtDeclarative>
+#include <QtQml/QQmlEngine>
 
 void QtMongoPlugin::registerTypes(const char *uri)
 {
@@ -13,7 +14,7 @@ void QtMongoPlugin::registerTypes(const char *uri)
         QString("you cannot create a new MongoType!"));
 }
 
-void QtMongoPlugin::initializeEngine(QDeclarativeEngine *engine, const char *uri) {
+void QtMongoPlugin::initializeEngine(QQmlEngine *engine, const char *uri) {
     QDeclarativeContext *ctx = engine->rootContext();
     ctx->setContextProperty("mongoDriver", new QMongoDriver(this));
 }

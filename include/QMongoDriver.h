@@ -3,7 +3,7 @@
 
 #include <QObject>
 #include <QVariant>
-#include <QDeclarativeEngine>
+#include <QtQml/QQmlExtensionPlugin>
 #include <mongo/client/dbclient.h>
 
 #include "QMongoType.h"
@@ -50,8 +50,8 @@ signals:
 public slots:
 
 protected:
-    QDeclarativeEngine* engine() { return m_engine; }
-    QDeclarativeEngine *m_engine;
+    QQmlEngine* engine() { return m_engine; }
+    QQmlEngine *m_engine;
 	
 	mongo::DBClientConnection *m_c;
     mongo::DBClientConnection* conn() { return m_c; }

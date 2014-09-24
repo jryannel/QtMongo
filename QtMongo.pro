@@ -1,13 +1,14 @@
 TEMPLATE = lib
-CONFIG += qt plugin
-QT += declarative
+CONFIG += qt plugin debug
+QT += qml quick declarative
 
 TARGET = qtmongodb
 
 DESTDIR = lib
 OBJECTS_DIR = tmp
 MOC_DIR = tmp
-INCLUDEPATH += include
+INCLUDEPATH += include  
+LIBS += -L/usr/lib/arm-linux-gnueabihf/qt5
 
 QMAKE_MOC = $$[QT_INSTALL_BINS]/moc -DBOOST_TT_HAS_OPERATOR_HPP_INCLUDED  -DBOOST_NO_TEMPLATE_PARTIAL_SPECIALIZATION
 
