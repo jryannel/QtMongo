@@ -1,8 +1,10 @@
 #include <QDebug>
 #include "QtMongoPlugin.h"
 #include "QMongoDriver.h"
-#include <QtDeclarative/QtDeclarative>
+#include <QtQml/QtQml>
+#include <QtQml/QQmlContext>
 #include <QtQml/QQmlEngine>
+#include <QtDeclarative/QDeclarativeView>
 
 void QtMongoPlugin::registerTypes(const char *uri)
 {
@@ -15,9 +17,6 @@ void QtMongoPlugin::registerTypes(const char *uri)
 }
 
 void QtMongoPlugin::initializeEngine(QQmlEngine *engine, const char *uri) {
-    QDeclarativeContext *ctx = engine->rootContext();
+    QQmlContext *ctx = engine->rootContext();
     ctx->setContextProperty("mongoDriver", new QMongoDriver(this));
 }
-
-Q_EXPORT_PLUGIN2(qtmongodb, QtMongoPlugin);
-

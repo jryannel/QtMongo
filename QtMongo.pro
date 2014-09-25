@@ -1,14 +1,13 @@
 TEMPLATE = lib
-CONFIG += qt plugin debug
-QT += qml quick declarative
+CONFIG += qt plugin
+QT += qml widgets
 
 TARGET = qtmongodb
 
 DESTDIR = lib
 OBJECTS_DIR = tmp
 MOC_DIR = tmp
-INCLUDEPATH += include  
-LIBS += -L/usr/lib/arm-linux-gnueabihf/qt5
+INCLUDEPATH += include /usr/include/arm-linux-gnueabihf/qt5 
 
 QMAKE_MOC = $$[QT_INSTALL_BINS]/moc -DBOOST_TT_HAS_OPERATOR_HPP_INCLUDED  -DBOOST_NO_TEMPLATE_PARTIAL_SPECIALIZATION
 
@@ -52,6 +51,7 @@ OTHER_FILES += \
     QtMongo/mongo.js \
     QtMongo/jstests.js \
     QtMongo/lib/jstests/find1.js \
-    QtMongo/MongoDriverWrapper.js
+    QtMongo/MongoDriverWrapper.js \
+    qtmongo.json
 
-LIBS += -lmongoclient  -lboost_thread -lboost_filesystem -lboost_program_options
+LIBS += -lmongoclient  -lboost_thread -lboost_filesystem -lboost_program_options -L/usr/include/arm-linux-gnueabihf/qt5
