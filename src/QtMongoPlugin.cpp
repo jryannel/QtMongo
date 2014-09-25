@@ -4,7 +4,6 @@
 #include <QtQml/QtQml>
 #include <QtQml/QQmlContext>
 #include <QtQml/QQmlEngine>
-#include <QtDeclarative/QDeclarativeView>
 
 void QtMongoPlugin::registerTypes(const char *uri)
 {

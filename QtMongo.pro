@@ -12,8 +12,8 @@ INCLUDEPATH += include /usr/include/arm-linux-gnueabihf/qt5
 QMAKE_MOC = $$[QT_INSTALL_BINS]/moc -DBOOST_TT_HAS_OPERATOR_HPP_INCLUDED  -DBOOST_NO_TEMPLATE_PARTIAL_SPECIALIZATION
 
 HEADERS += \
-    include/QtMongoPlugin.h \
     include/BSON.h \
+    include/QtMongoPlugin.h \
     include/QMongoDriver.h \
     include/QMongoCursor.h \
     include/QMongoType.h

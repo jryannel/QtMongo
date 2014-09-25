@@ -8,4 +8,10 @@
 mongo::BSONObj toBson(QVariantMap obj);
 QVariantMap fromBson(mongo::BSONObj bson);
 
+class foo : QObject
+{
+    Q_OBJECT
+};
+
+
 #endif // BSON_H
