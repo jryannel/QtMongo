@@ -5,6 +5,7 @@ ListModel {
 
     property MongoCollection collection
     property variant query
+    property variant fields
     property variant sort
     property int limit: -1
     property int skip: 0
@@ -19,7 +20,7 @@ ListModel {
     function update() {
         clear()
 
-        var cursor = collection.find(query)
+        var cursor = collection.find(query, fields)
 
         if ($returnKey)
             cursor = cursor._addSpecial("$returnKey", $returnKey)

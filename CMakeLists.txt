@@ -68,12 +68,11 @@ add_library( libqtmongoplugin SHARED
 	 ${SRCS}
 	 ${MOC_SRCS}
 	)
-
 set( LIBRARY_OUTPUT_PATH ${qtmongo_SOURCE_DIR}/QtMongo/ )
 set_target_properties( libqtmongoplugin PROPERTIES PREFIX "")
 target_link_libraries( libqtmongoplugin ${Boost_LIBRARIES} ${OPENSSL_LIBRARIES} ${rt_library} ${pthread_library} ${CMAKE_DL_LIBS})
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${Qt5Widgets_EXECUTABLE_COMPILE_FLAGS}")
-set(${QT_IMPORTS_DIR} /usr/lib/arm-linux-gnueabihf/qt5/imports)
+set(QT_IMPORTS_DIR /usr/lib/arm-linux-gnueabihf/qt5/imports)
 install( TARGETS libqtmongoplugin LIBRARY DESTINATION ${QT_IMPORTS_DIR}/QtMongo )
 install( FILES
 	QtMongo/lib/mongodb/collection_patch.js

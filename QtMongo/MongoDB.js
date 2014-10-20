@@ -16,7 +16,7 @@ var init = function(host, name) {
 
 console.log("Starting Unit Tests")
 
-init("localhost", "unittestdb")
+init("localhost", "yadaserver")
 console.log("DB connection ready. Starting...")
 Qt.include("jstests.js")
 

@@ -40,3 +40,6 @@ MongoDriverWrapper.prototype.insert = function(ns, obj) {
 MongoDriverWrapper.prototype.find = function(ns, query, fields, limit, skip, batchSize, options) {
     return this._mongoDriver.find(ns, this.convertObject(query), fields, limit, skip, batchSize, options);
 }
+MongoDriverWrapper.prototype.update = function(ns, query, obj, upsert, multi) {
+    return this._mongoDriver.update(ns, query, obj, upsert, multi);
+}

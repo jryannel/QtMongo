@@ -4,7 +4,7 @@
 
 QVariantMap fromBson(mongo::BSONObj bson) {
     QVariantMap obj;
-
+    
     for(mongo::BSONObjIterator i(bson); i.more();) {
         mongo::BSONElement e = i.next();
         QString name = QString::fromStdString(e.fieldName());
@@ -17,10 +17,15 @@ QVariantMap fromBson(mongo::BSONObj bson) {
             break;
         case mongo::String:
             obj[name] = QString::fromStdString(e.str());
-            break;
+            //qCritical() << name;
+	    break;
         case mongo::Object:
             obj[name] = fromBson(e.embeddedObject());
+	    //qCritical() << obj[name];
             break;
+	case mongo::Array:
+	    obj[name] = fromBson(e.embeddedObject());
+	    break;
         case mongo::Date:
             obj[name] = QDateTime::fromTime_t(e.date());
             break;
@@ -43,10 +48,11 @@ QVariantMap fromBson(mongo::BSONObj bson) {
             obj[name] = e.numberInt();
             break;
         default:
-            qCritical() << "fromBson() type" << e.type() << "unknown!";
+            qCritical() << "fromBson() type" << e.type() << "unknown! It was type: " << mongo::Object << ". and name is:" << name;
             Q_ASSERT(false);
         }
     }
+    //qCritical() << obj;
     return obj;
 }
 
