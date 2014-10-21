@@ -7,6 +7,7 @@
 
 mongo::BSONObj toBson(QVariantMap obj);
 QVariantMap fromBson(mongo::BSONObj bson);
+QVariantList fromListBson(mongo::BSONObj bson);
 
 class foo : QObject
 {
